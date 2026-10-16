@@ -1,9 +1,13 @@
 import os
+from pathlib import Path
 
 import requests
+from dotenv import load_dotenv
 
 
-API_KEY = os.environ.get("API_NINJAS_KEY")
+load_dotenv(Path(__file__).resolve().parent / ".env")
+
+API_KEY = os.environ.get("API_KEY") or os.environ.get("API_NINJAS_KEY")
 API_URL = "https://api.api-ninjas.com/v1/animals"
 REQUEST_TIMEOUT = 15
 
@@ -16,7 +20,7 @@ def fetch_data(animal_name):
     Raise ValueError if the key is missing or fetching valid data fails.
     """
     if not API_KEY or not API_KEY.strip():
-        raise ValueError("Bitte zuerst API_NINJAS_KEY einrichten.")
+        raise ValueError("Bitte API_KEY in der .env-Datei einrichten.")
 
     try:
         response = requests.get(

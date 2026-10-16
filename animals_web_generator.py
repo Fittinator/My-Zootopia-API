@@ -72,7 +72,7 @@ def main():
     try:
         animals_data = data_fetcher.fetch_data(animal_name)
     except ValueError:
-        print("Abruf fehlgeschlagen. Bitte API_NINJAS_KEY und Verbindung prüfen.")
+        print("Abruf fehlgeschlagen. Bitte API_KEY in .env und Verbindung prüfen.")
         return
 
     # Read the HTML template
